@@ -6,7 +6,7 @@ This repository contains the necessary R scripts to replicate the inferential an
 - MMP_Processing_062625.R
   - This R script takes the raw MMP files, cleans the variables, and generates the post-processing dataset. 
 - ..R
-  - This file estimates the inferential models.
+  - This file estimates all inferential models (e.g., multivariable logistic regressions with community clustered standard errors) presented in the main manuscript and appendix. 
 
 ## Data Files
 - Final_MMP_Analytical_Dataset_2025-07-23.csv
