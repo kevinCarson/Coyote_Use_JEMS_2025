@@ -4,9 +4,9 @@ This repository contains the necessary R scripts to replicate the inferential an
 
 ## R Scripts
 - ..R
- - This file extracts the data.
+  - This file extracts the data.
 - ..R
- - This file estimates the inferential models.
+  - This file estimates the inferential models.
 
 ## Data Files
 - ..csv
