@@ -12,6 +12,6 @@ This repository contains the necessary R scripts to replicate the inferential an
 - ..csv
   - This csv files contains the analytical sample used in the manuscript alongside the respective variables. 
 
-## Data Files
+## Graphs
 - ..jpg
   - This graph is found in...
