@@ -158,7 +158,7 @@ write.csv(data3, paste("Final_MMP_Analytical_Dataset_", Sys.Date(),".csv",sep = 
 
 #-----------------------------------------------------------------------------#
 # Inferential Analysis of MMP Dataset 
-# - Logistic Regression with Probability of Coyote Use
+# - Logistic Regression with Probability of Coyote Use (Table 2 in the main manuscript)
 #-----------------------------------------------------------------------------#
 coy.model <- glm(Coyote ~ 
                 Age #the age of the migrant (crossing year - 1)
@@ -187,7 +187,8 @@ summary(coy.model) #summary of model
 #community clustered asymptotic standard errors
 communitySE <- sandwich::vcovCL(coy.model, cluster = data3$Community)
 coeftest(coy.model, vcov. = communitySE) #results with community clustered SEs
-
+AMEs <- avg_slopes(coy.model, vcov = communitySE) #Average marginal effects for each variable
+AMEs
 
 #-----------------------------------------------------------------------------#
 # Model Fit Assessment
@@ -199,14 +200,12 @@ pscl::pR2(coy.model) #mcfadden r-squared
 AIC(coy.model) #AIC
 BIC(coy.model) #BIC
 predicted_correctly(data3$Coyote, predicted = predict(coy.model, type = "response")) #Proportion predicted correctly
-AMEs <- avg_slopes(coy.model, vcov = communitySE) #Average marginal effects for each variable
-AMEs
 length(unique(data3$Community)) #the number of communities in the empirical dataset
 
 
 
 #-----------------------------------------------------------------------------#
-# Predicted Probabilities for Ideal Types
+# Predicted Probabilities for Ideal Types (Figure 1 in the main manuscript)
 #-----------------------------------------------------------------------------#
 ideal.types <- avg_predictions(coy.model, variables = list("noncoyoteMHC" = c(0,1), 
                                                            "coyoteMHC" = c(0:max(data3$coyoteMHC))),
@@ -268,7 +267,11 @@ second.diff
 #-----------------------------------------------------------------------------#
 boot.strap.SE <- sandwich::vcovBS(coy.model, R = 2500, cores = 4)#Bootstrapped Standard Errors with 2500 Replications
 lmtest::coeftest(coy.model, vcov. = boot.strap.SE)#Testing the Significance of Results
-
+AME.coyote.exp <- avg_slopes(coy.model, vcov = boot.strap.SE, variables = "coyoteMHC")
+AME.coyote.exp
+AME.across.MHC <- avg_slopes(coy.model, vcov = boot.strap.SE, variables = "coyoteMHC",
+                             by = "noncoyoteMHC")
+AME.across.MHC
 
 
 #-----------------------------------------------------------------------------#
@@ -537,7 +540,7 @@ summary(model.noappreh) #summary of model
 glmtoolbox::hltest(model.noappreh) #Hosmer-Lemeshow Goodness-of-Fit Test
 glmtoolbox::gvif(model.noappreh) #variance inflation factor
 coeftest(model.noappreh, vcov. = sandwich::vcovCL(model.noappreh, cluster = data.appreh$Community))#Community Clustered SEs
-avg_slopes(model.noappreh) #Average marginal  effects for the relevent variables
+avg_slopes(model.noappreh, vcov = sandwich::vcovCL(model.noappreh, cluster = data.appreh$Community)) #Average marginal  effects for the relevent variables
 
 
 
@@ -686,7 +689,6 @@ lapply(1:n.mice.imputations,function(i){
 # Prior Coyote Experience is a Binary Variable
 # Prior Undocumented Trips is Continous
 #-----------------------------------------------------------------------------#
-data3$ratiocoyote <- data3$CoyNo/data3$Prior
 model.binary <- glm(Coyote ~ 
                      Age #the age of the migrant (crossing year - 1)
                    + Farm  #the occupation of the migrant (crossing year - 1)
@@ -719,6 +721,39 @@ avg_slopes(model.binary, hypothesis = "b2 - b1 = 0", variables = "Prior",
 
 
 
+#-----------------------------------------------------------------------------#
+# Appendix: Inferential Analysis of MMP Dataset in which
+# Non-Coyote Migration Human Captial is Measured by a Continous Measure
+#-----------------------------------------------------------------------------#
+data3$noncoyoteMHC <- data3$Prior - data3$CoyNo
+model.noncoyote.continous <- glm(Coyote ~ 
+                      Age #the age of the migrant (crossing year - 1)
+                    + Farm  #the occupation of the migrant (crossing year - 1)
+                    + Educ  #the years of education of the migrant (crossing year - 1)
+                    + Land  #land ownership of the migrant (crossing year - 1)
+                    + propertyOwn  #Home ownership of the migrant (crossing year - 1)
+                    + Parent #Binary for if the parent of the migrant was a migrant (crossing year - 1)
+                    + Sibling #The number of siblings of the migrant who was a migrant (crossing year - 1)
+                    + Prevalence  #the Community Prevalance of Migration (crossing year - 1)
+                    + communityType #the Community Type of Migration (crossing year - 1)
+                    + Child_con #The number of children of the migrant who was a migrant (crossing year - 1)
+                    + Exper #The months of us experience of the migrant who was a migrant (crossing year - 1)
+                    + Appreh #The past apprehensions of the migrant who was a migrant (crossing year - 1)
+                    + noncoyoteMHC
+                    + CoyNo#Key Dependent: The ratio of coyote trips to total trips
+                    + Tucson  #Did the trip occur in the tucson sector
+                    + RIO_GRANDE #Did the trip occur in the rio grande sector
+                    + BIG_BEND #Did the trip occur in the big bend sector
+                    + DEL_RIO #Did the trip occur in the del rio sector
+                    + Linewatch #Did the trip occur after the prevention through deterrence era?
+                    ,data = data3 
+                    ,family = binomial(link = "logit")) #logistic regression
+summary(model.noncoyote.continous) #summary of model
+coeftest(model.noncoyote.continous, vcov. = sandwich::vcovCL(model.noncoyote.continous, 
+                                                             cluster = data3$Community))#Community Clustered SEs
+pscl::pR2(model.noncoyote.continous)
+avg_slopes(model.noncoyote.continous, vcov = sandwich::vcovCL(model.noncoyote.continous, 
+                                                              cluster = data3$Community)) #Average marginal  effects for the ratio coyote variable
 
 
 
