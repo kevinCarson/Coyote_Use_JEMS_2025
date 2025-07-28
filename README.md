@@ -5,7 +5,7 @@ This repository contains the necessary R scripts to replicate the inferential an
 ## R Scripts
 - MMP_Processing_062625.R
   - This R script takes the raw MMP files, cleans the variables, and generates the post-processing dataset. 
-- MMP_Multivariable_Analysis_072325.R
+- MMP_Multivariable_Analysis_072825.R
   - This file estimates all inferential models (e.g., multivariable logistic regressions with community clustered standard errors) presented in the main manuscript and appendix. 
 
 ## Data Files
@@ -13,5 +13,5 @@ This repository contains the necessary R scripts to replicate the inferential an
   - This csv files contains the analytical sample used in the manuscript alongside the respective variables. 
 
 ## Graphs
-- Predicted_Coyote_Plot_072325.png
+- Predicted_Probability_of_using_a_Coyote_072825.png
   - This is the predicted probability graph shown in the main manuscript in which plots the predicted probability of crossing with a coyote on the most recent crossing trip across different levels of prior coyote experience and migration-specific human capital.
