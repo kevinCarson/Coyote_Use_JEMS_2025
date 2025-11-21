@@ -1,6 +1,6 @@
 #################################################################################
 #     R Code for Processing for "Coyotaje in an Uncertain Social Environment: Evidence from Prior Coyote Experience"
-#     Code Written By: *********
+#     Code Written By: Kevin A. Carson
 #     Last Updated: 08-24-24
 #################################################################################
 rm(list = ls()) #clear memory
