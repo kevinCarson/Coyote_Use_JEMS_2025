@@ -1,7 +1,7 @@
 #-------------------------------------------------------------------------------#
 
 #     R Code for Inferential Analyses for "Coyotaje in an Uncertain Social Environment: Evidence from Prior Coyote Experience"
-#     Code Written By: *********
+#     Code Written By: Kevin A. Carson
 #     Last Updated: 07-23-2025
 
 #-------------------------------------------------------------------------------#
