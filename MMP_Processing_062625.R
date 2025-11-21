@@ -1,5 +1,5 @@
 #################################################################################
-#     R Code for Processing for "Coyotaje in an Uncertain Social Environment: Evidence from Prior Coyote Experience"
+#     R Code for Processing for "Coyotaje in an Uncertain Social Environment: Prior Coyote Experience as a Form of Migration-Specific Human Capital"
 #     Code Written By: Kevin A. Carson
 #     Last Updated: 08-24-24
 #################################################################################
