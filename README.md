@@ -20,4 +20,4 @@ For any questions or comments, feel free to email me at **kacarson@arizona.edu**
  
 ## Reference
 
-Carson, Kevin A. 2025. “Coyotaje in an Uncertain Social Environment: Prior Coyote Experience as a Formof Migration-Specific Human Capital.” Journal of Ethnic and Migration Studies 1–22. https://doi.org/10.1080/1369183X.2025.2592627
+Carson, Kevin A. 2025. “Coyotaje in an Uncertain Social Environment: Prior Coyote Experience as a Formof Migration-Specific Human Capital.” *Journal of Ethnic and Migration Studies* 1–22. https://doi.org/10.1080/1369183X.2025.2592627
