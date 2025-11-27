@@ -17,3 +17,7 @@ For any questions or comments, feel free to email me at **kacarson@arizona.edu**
 ## Graphs
 - Predicted_Probability_of_using_a_Coyote_072825.png
   - This is the predicted probability graph shown in the main manuscript in which plots the predicted probability of crossing with a coyote on the most recent crossing trip across different levels of prior coyote experience and migration-specific human capital.
+ 
+## Reference
+
+Carson, Kevin A. 2025. “Coyotaje in an Uncertain Social Environment: Prior Coyote Experience as a Formof Migration-Specific Human Capital.” Journal of Ethnic and Migration Studies 1–22. https://doi.org/10.1080/1369183X.2025.2592627
